@@ -6,6 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip Automator.zip
+      - name: Corrigir Engine.kt
+        run: sed -i 's/stopped = true; stopSpam();/stopped = true; spamT?.interrupt(); spamT = null;/' Automator/app/src/main/java/com/example/automator/Engine.kt
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
